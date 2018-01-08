@@ -33,9 +33,15 @@ fi
 echo "-----> Unpacking tar"
 tar -xf $WKHTMLTOPDF_TAR -C $TMP_PATH
 
-echo $TMP_PATH;
-echo $WKHTMLTOPDF_PATH;
-echo $WKHTMLTOPDF_BINARIES;
+
+echo "TMP_PATH"
+echo $TMP_PATH
+echo "WKHTMLTOPDF_PATH"
+echo $WKHTMLTOPDF_PATH
+echo "WKHTMLTOPDF_BINARIES"
+echo $WKHTMLTOPDF_BINARIES
+echo "BIN_PAth"
+echo $BIN_PAth
 
 echo "-----> Setting permissions"
 chmod +x $WKHTMLTOPDF_BINARIES/*
