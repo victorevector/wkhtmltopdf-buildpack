@@ -22,13 +22,20 @@ FONTS_DIR=$(cd "$BIN_DIR/../fonts"; pwd)
 
 if [ -f $WKHTMLTOPDF_TAR ]; then
   echo "-----> Using wkhtmltopdf tar from cache"
+	echo $WKHTMLTOPDF_TAR
 else
   echo "-----> Downloading wkhtmltopdf tar"
   curl -L $WKHTMLTOPDF_URL -o $WKHTMLTOPDF_TAR
 fi
 
+
+
 echo "-----> Unpacking tar"
 tar -xf $WKHTMLTOPDF_TAR -C $TMP_PATH
+
+echo $TMP_PATH;
+echo $WKHTMLTOPDF_PATH;
+echo $WKHTMLTOPDF_BINARIES;
 
 echo "-----> Setting permissions"
 chmod +x $WKHTMLTOPDF_BINARIES/*
