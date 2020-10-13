@@ -11,27 +11,28 @@ BIN_PATH="$BUILD_DIR/bin"
 TMP_PATH="$BUILD_DIR/tmp"
 mkdir -p $CACHE_DIR $BIN_PATH $TMP_PATH
 
-[ -z "$WKHTMLTOPDF_VERSION" ] && WKHTMLTOPDF_VERSION="0.12.3"
-WKHTMLTOPDF_URL="https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.5/wkhtmltox_0.12.5-1.bionic_amd64.deb"
-WKHTMLTOPDF_TAR="$CACHE_DIR/wkhtmltox.tar.xz"
+PKG_NAME="wkhtmltox_0.12.5-1.bionic_amd64.deb"
+WKHTMLTOPDF_URL="https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.5/$PKG_NAME"
+WKHTMLTOPDF_DEB="$CACHE_DIR/$PKG_NAME"
 WKHTMLTOPDF_PATH="$TMP_PATH/wkhtmltox"
 WKHTMLTOPDF_BINARIES="$WKHTMLTOPDF_PATH/bin"
 
 BIN_DIR=$(cd $(dirname $0); pwd)
 FONTS_DIR=$(cd "$BIN_DIR/../fonts"; pwd)
 
-if [ -f $WKHTMLTOPDF_TAR ]; then
-  echo "-----> Using wkhtmltopdf tar from cache"
-	echo $WKHTMLTOPDF_TAR
-else
-  echo "-----> Downloading wkhtmltopdf tar"
-  curl -L $WKHTMLTOPDF_URL -o $WKHTMLTOPDF_TAR
+if [ -f $WKHTMLTOPDF_DEB ]; then
+  echo "-----> Using wkhtmltopdf deb from cache"
+	echo $WKHTMLTOPDF_DEB
+elseow m
+  echo "-----> Downloading wkhtmltopdf .deb"
+  curl -L $WKHTMLTOPDF_URL -o $WKHTMLTOPDF_DEB
 fi
 
 
 
-echo "-----> Unpacking tar"
-tar -xf $WKHTMLTOPDF_TAR -C $TMP_PATH
+echo "-----> Installing .deb"
+dpkg -i $WKHTMLTOPDF_DEB
+apt-get install -f
 
 
 echo "TMP_PATH"
