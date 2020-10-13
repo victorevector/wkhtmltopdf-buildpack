@@ -32,7 +32,7 @@ fi
 
 echo "-----> Installing .deb"
 dpkg -i $WKHTMLTOPDF_DEB
-apt-get install -f
+apt-get install -f -y
 
 
 echo "TMP_PATH"
